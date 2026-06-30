@@ -33,6 +33,8 @@ The python package stes-tools contains the cost data function and also the simul
 # heat capacity function
 >>> c_p = specific_heat_water(25)
 >>> c_p
+```
+```text
 4181.562794921874
 ```
 ```python
