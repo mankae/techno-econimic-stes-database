@@ -7,12 +7,12 @@ def data_import(file_path):
 
     Sheet 1: 'data' contains the following columns:
     - time: Date and Time
-    - Q_storage: Energy content of the storage (MWh) (ONLY STARTING VALUE NEEDED FOR SIMULATION)
+    - Q_storage (NEEDED FOR VALIDATION. FOR SIMULATION ONLY THE INITIAL VALUE IS NEEDED): Energy content of the storage (MWh)
     - Q_charge: Energy charged into the storage (MWh)
     - Q_discharge: Energy discharged from the storage (MWh)
     - T_air: Air temperature at the storage location (°C)
     - T_soil: Soil temperature at the storage location (°C)
-    - T_XX: Temperature at different heights (increasing from bottom to top XX = 01, 02, ...) in the storage (°C) (NOT NEEDED FOR SIMULATION)
+    - T_XX (NEEDED FOR VALIDATION. FOR SIMULATION TEMPERATURE MAP IS USED): Temperature at different heights (increasing from bottom to top XX = 01, 02, ...) in the storage (°C)
     
     Sheet 2: 'geometry' contains the following columns:
     - h: Height of the truncated pyramid (m)
@@ -35,12 +35,12 @@ def PTES_geometry_import(file_path):
 
     Sheet 1: 'data' contains the following columns:
     - time: Date and Time
-    - Q_storage: Energy content of the storage (MWh) (ONLY STARTING VALUE NEEDED FOR SIMULATION)
+    - Q_storage (NEEDED FOR VALIDATION. FOR SIMULATION ONLY THE INITIAL VALUE IS NEEDED): Energy content of the storage (MWh)
     - Q_charge: Energy charged into the storage (MWh)
     - Q_discharge: Energy discharged from the storage (MWh)
     - T_air: Air temperature at the storage location (°C)
     - T_soil: Soil temperature at the storage location (°C)
-    - T_XX: Temperature at different heights (increasing from bottom to top XX = 01, 02, ...) in the storage (°C) (NOT NEEDED FOR SIMULATION)
+    - T_XX (NEEDED FOR VALIDATION. FOR SIMULATION TEMPERATURE MAP IS USED): Temperature at different heights (increasing from bottom to top XX = 01, 02, ...) in the storage (°C)
     
     Sheet 2: 'geometry' contains the following columns:
     - h: Height of the truncated pyramid (m)

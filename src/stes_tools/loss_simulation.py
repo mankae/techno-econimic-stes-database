@@ -354,7 +354,7 @@ class PTES(STES):
 
     def simulate_PTES(self, file_path, Q_storage_start, sim_start=None, sim_end=None):
         """
-        Run the detailed hour-by-hour PTES simulation and fit a simple
+        Run the detailed day-by-day PTES simulation and fit a simple
         self-discharge model to the result.
 
         For each timestep the layered temperature profile is looked up
@@ -369,8 +369,8 @@ class PTES(STES):
         ----------
         file_path       : str    Path to the input data file.
         Q_storage_start : float  Initial storage energy content [MWh].
-        sim_start       : int    Start index into the time series (None = beginning).
-        sim_end         : int    End index into the time series   (None = end).
+        sim_start       : int    Start slice index into data (None = beginning).    If Q_storage_start is not to the same time as the first row of data (e.g. T_air, T_soil, Q_charge, Q_discharge)
+        sim_end         : int    End slice index into data   (None = end).          If simulation end for Q_storage is not to the same time as the last row of data (e.g. T_air, T_soil, Q_charge, Q_discharge)
 
         Returns
         -------
