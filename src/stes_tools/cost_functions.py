@@ -69,7 +69,7 @@ def OPEX_STES(technology):
 def CAPEX_STES(
     technology="PTES",
     unit="per_volume",
-    capacity=10000,
+    capacity=0,
     T_min=None,
     T_max=None
 ):
