@@ -21,13 +21,11 @@ The python package stes-tools contains the cost data function and also the simul
 - temperature_map
 
 ## Examples
-- [Cost function data treatment and example](notebooks/CAPEX_OPEX_database_STES.ipynb)
-- [Heat loss simulation of PTES](notebooks/Heat_Loss_Simulation_of_PTES.ipynb)
 
 **Example for water property functions:**
 ```python
 # density function
->>> rho = st.density_water(25)
+>>> rho = st.density_water(T=25)
 >>> rho
 ```
 **Output [kg/m^3]:**
@@ -36,7 +34,7 @@ The python package stes-tools contains the cost data function and also the simul
 ```
 ```python
 # heat capacity function
->>> c_p = st.specific_heat_water(25)
+>>> c_p = st.specific_heat_water(T=25)
 >>> c_p
 ```
 **Output [J/(kg·K)]:**
@@ -46,7 +44,7 @@ The python package stes-tools contains the cost data function and also the simul
 **Example cost functions:**
 ```python
 # get the CAPEX and OPEX value of a PTES plant
->>> CAPEX = st.CAPEX_STES('PTES', 'per_volume', 70000, T_min=45, T_max=85) * 70000
+>>> CAPEX = st.CAPEX_STES(technology='PTES', unit='per_volume', capacity=70000, T_min=45, T_max=85) * 70000
 >>> OPEX = CAPEX * st.OPEX_STES('PTES')
 >>> print("CAPEX of a PTES with a volume of 70000 m^3 and temperature range from 45°C to 85°C:", round(CAPEX), "CHF, OPEX of the same PTES:", round(OPEX), "CHF/a")
 ```
@@ -113,5 +111,16 @@ plt.grid()
 plt.show()
 ```
 **Output:**
+
 ![failed to load image](notebooks/dronninglund_demo.png)
+- black-dashed: reported data
+- red: simulated data
+- blue-dashed: data calculated with the SSM
+The MAPE quantifies the deviation of the simulated data from the reported data
+
+**More details on the python package:**
+- [Cost function data treatment and example](notebooks/CAPEX_OPEX_database_STES.ipynb)
+- [Heat loss simulation of PTES](notebooks/Heat_Loss_Simulation_of_PTES.ipynb)
+
+## Installation guide:
 
