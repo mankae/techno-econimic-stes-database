@@ -126,7 +126,7 @@ The MAPE quantifies the deviation of the simulated data from the reported data
 
 ## Installation guide:
 
-1. Clone the repository from GitHub:
+1. Clone the repository from GitHub (git bash):
 
 ```bash
 git clone https://github.com/mankae/techno-economic-stes-database.git
@@ -164,6 +164,27 @@ pip install -e .
 ```python
 import stes_tools as st
 ```
+
+### Install development dependencies (optional)
+
+To run the notebooks:
+
+```bash
+pip install -e ".[dev]"
+```
+
+**Illustration where to create virtual environment**
+
+ techno-economic-stes-database/ ← run commands 2. to 5. here
+  │
+  ├── .venv/                    ← created in step 3.
+  │
+  ├── pyproject.toml             
+  ├── README.md
+  ├── LICENSE
+  ├── src/
+  │   └── stes_tools/
+  └── notebooks/
 
 ## Comment on used data:
 
