@@ -10,14 +10,16 @@ $$Q_{\mathrm{sto,t+1}}=\eta_{\mathrm{self}} \cdot Q_{\mathrm{sto,t}}+\left(\eta_
 
 The python package stes-tools contains the cost data function and also the simulation framework to simulate heat loss of PTES and TTES. The following functions are contained within the package:
 
+Water properties:
 - density_water(T)
 - specific_heat_water(T)
-  
+
+Cost data:
 - CAPEX_STES(technology, unit, capacity, T_min, T_max): CAPEX for a given type of STES (PTES, TTES, BTES, ATES) based on the capacity and the unit of the capacity.
 - OPEX_STES(technology): OPEX for a given type of STES (PTES, TTES, BTES, ATES)
-  
-- data_import(file_path): imports data for heat loss simulation
-- PTES_geometry_import(file_path): imports the geometry data for heat loss simulation (specifically for PTES: truncated pyramid)
+
+Heat loss simulation:
+- data_import(file_path): imports data from Excel file for heat loss simulation. Formatting requirements for the Excel file can be found [here](src/stes_tools/import_functions.py).
 - STES: Is the class which is used to define the simulated storages. It is divided in the following two subclasses:
   - PTES(h, a, b, c, d, n_layers, T_min, T_max, T_ref): Define a PTES storage by defining the geometry (h, a, b, c, d), the number of layers, the temperature range (T_min to T_max) and the reference temperature
   - TTES(h, r, n_layers, T_min, T_max, T_ref): Define a TTES storage by defining the geometry (h, r), the number of layers, the temperature range (T_min to T_max) and the reference temperature.
@@ -30,22 +32,13 @@ The class and subclasses contain also functions. For more information, see the e
 
 **Example for water property functions:**
 ```python
-# density function
 >>> rho = st.density_water(T=25)
->>> rho
-```
-**Output [kg/m^3]:**
-```text
-997.0680068359376
-```
-```python
-# heat capacity function
 >>> c_p = st.specific_heat_water(T=25)
->>> c_p
+>>> print("The density of water at 25°C is", round(rho), "kg/m^3 and the specific heat capacity", round(c_p), "J/(kg·K).")
 ```
-**Output [J/(kg·K)]:**
+**Output:**
 ```text
-4181.562794921874
+The density of water at 25°C is 997 kg/m^3 and the specific heat capacity 4182 J/(kg·K).
 ```
 **Example cost functions:**
 ```python
@@ -66,7 +59,10 @@ from sklearn.metrics import mean_absolute_error
 
 file_path = "dronninglund_data_2014.xlsx"
 
-dronninglund_PTES = st.PTES(*st.PTES_geometry_import(file_path), n_layers=32, T_min=12, T_max=90, T_ref=10)
+# geometry parameters for a truncated pyramid (Reference: https://doi.org/10.1016/j.energy.2018.03.152)
+h, a, b, c, d = 16, 91, 91, 26, 26
+
+dronninglund_PTES = st.PTES(h, a, b, c, d, n_layers=32, T_min=12, T_max=90, T_ref=10)
 dronninglund_PTES.set_temperature_map(st.temperature_map(n_layers=32, T_min=12, T_mid=45, T_max=90, n_points=2000, stretch=1, sharpness=10, overlap=0.3, plot=False))
 
 data = st.data_import(file_path)
